@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06111f">
+  <meta name="description" content="VietSEM — Vietnam Smart Education Management. Một định hướng quản lý giáo dục thông minh dành cho Việt Nam.">
+  <title>VietSEM — Vietnam Smart Education Management</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%2306111f'/%3E%3Cpath d='M13 18h10l9 27 9-27h10L37 50H27z' fill='%2339e6c5'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #06111f;
+      --bg-soft: #0a1a2c;
+      --surface: rgba(13, 35, 57, .68);
+      --text: #f4f8fb;
+      --muted: #9bb1c7;
+      --line: rgba(179, 209, 232, .15);
+      --accent: #39e6c5;
+      --accent-2: #6ca8ff;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 78% 16%, rgba(41, 133, 255, .18), transparent 27rem),
+        radial-gradient(circle at 15% 76%, rgba(57, 230, 197, .11), transparent 25rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .site-shell {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 84px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 760;
+      letter-spacing: -.02em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(57, 230, 197, .4);
+      border-radius: 10px;
+      background: linear-gradient(145deg, rgba(57, 230, 197, .14), rgba(108, 168, 255, .1));
+      color: var(--accent);
+      font-size: .9rem;
+      box-shadow: inset 0 0 18px rgba(57, 230, 197, .08);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: .875rem;
+    }
+
+    .status::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(57, 230, 197, .09);
+      content: "";
+    }
+
+    main { position: relative; }
+
+    .hero {
+      display: grid;
+      min-height: calc(100vh - 85px);
+      min-height: calc(100svh - 85px);
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr);
+      align-items: center;
+      gap: 74px;
+      padding-block: 72px 92px;
+    }
+
+    .eyebrow {
+      margin: 0 0 24px;
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3.2rem, 8vw, 7.3rem);
+      font-weight: 760;
+      letter-spacing: -.075em;
+      line-height: .93;
+    }
+
+    h1 span {
+      display: block;
+      background: linear-gradient(98deg, var(--accent), #8ab9ff 72%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .intro {
+      max-width: 640px;
+      margin: 30px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 22px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #03231f;
+      font-weight: 750;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(57, 230, 197, .2);
+    }
+
+    .button:focus-visible,
+    .brand:focus-visible {
+      outline: 3px solid rgba(108, 168, 255, .75);
+      outline-offset: 4px;
+    }
+
+    .visual {
+      position: relative;
+      aspect-ratio: 1 / 1.06;
+      isolation: isolate;
+    }
+
+    .orbit,
+    .core,
+    .metric { position: absolute; }
+
+    .orbit {
+      inset: 7%;
+      border: 1px solid rgba(108, 168, 255, .18);
+      border-radius: 50%;
+      animation: spin 24s linear infinite;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      position: absolute;
+      border-radius: 50%;
+      content: "";
+    }
+
+    .orbit::before {
+      top: 10%;
+      left: 8%;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      box-shadow: 0 0 24px rgba(57, 230, 197, .6);
+    }
+
+    .orbit::after {
+      right: 5%;
+      bottom: 17%;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-2);
+      box-shadow: 0 0 20px rgba(108, 168, 255, .6);
+    }
+
+    .orbit.secondary {
+      inset: 21%;
+      animation-direction: reverse;
+      animation-duration: 17s;
+    }
+
+    .core {
+      inset: 32%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(57, 230, 197, .28);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(57, 230, 197, .18), rgba(6, 17, 31, .84) 68%);
+      box-shadow: 0 0 75px rgba(57, 230, 197, .11), inset 0 0 42px rgba(57, 230, 197, .08);
+      color: var(--text);
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 780;
+      letter-spacing: -.06em;
+    }
+
+    .metric {
+      z-index: 2;
+      width: 145px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      box-shadow: 0 18px 55px rgba(0, 0, 0, .18);
+      backdrop-filter: blur(14px);
+    }
+
+    .metric small {
+      display: block;
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 1rem;
+      font-weight: 680;
+    }
+
+    .metric.one { top: 8%; right: 0; }
+    .metric.two { bottom: 8%; left: 0; }
+
+    .principles {
+      padding-block: 92px 110px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .section-head h2 {
+      max-width: 580px;
+      margin: 0;
+      font-size: clamp(2rem, 4.4vw, 4rem);
+      letter-spacing: -.055em;
+      line-height: 1.04;
+    }
+
+    .section-head p {
+      max-width: 530px;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      min-height: 220px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(150deg, rgba(16, 41, 66, .68), rgba(8, 24, 40, .56));
+    }
+
+    .card-number {
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+    }
+
+    .card h3 {
+      margin: 40px 0 10px;
+      font-size: 1.25rem;
+      letter-spacing: -.025em;
+    }
+
+    .card p { margin: 0; color: var(--muted); }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 92px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 860px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 42px;
+        padding-block: 74px 78px;
+      }
+      .visual { width: min(100%, 520px); margin-inline: auto; }
+      .section-head { grid-template-columns: 1fr; gap: 22px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 185px; }
+      .card h3 { margin-top: 28px; }
+    }
+
+    @media (max-width: 520px) {
+      .site-shell { width: min(calc(100% - 28px), var(--max)); }
+      header { min-height: 72px; }
+      .status span { display: none; }
+      .hero { padding-block: 58px 68px; }
+      h1 { font-size: clamp(3.15rem, 17vw, 4.7rem); }
+      .intro { margin-top: 24px; }
+      .button { width: 100%; }
+      .visual { aspect-ratio: 1; }
+      .metric { width: 128px; padding: 13px 14px; }
+      .metric.one { top: 1%; }
+      .metric.two { bottom: 1%; }
+      .principles { padding-block: 70px 82px; }
+      footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 4px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .orbit { animation: none; }
+      .button { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header>
+      <a class="brand" href="#top" aria-label="VietSEM — Trang chủ">
+        <span class="brand-mark" aria-hidden="true">V</span>
+        <span>VietSEM</span>
+      </a>
+      <div class="status"><span>Đang được hoàn thiện</span></div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">Vietnam Smart Education Management</p>
+          <h1 id="hero-title">Giáo dục thông minh.<span>Quản lý đơn giản.</span></h1>
+          <p class="intro">VietSEM là định hướng xây dựng một hệ thống quản lý giáo dục thông minh dành cho Việt Nam. Dự án hiện đang trong giai đoạn hình thành và hoàn thiện ý tưởng.</p>
+          <div class="actions">
+            <a class="button" href="#dinh-huong">Khám phá định hướng <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <div class="visual" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="orbit secondary"></div>
+          <div class="core">VietSEM</div>
+          <div class="metric one"><small>Định hướng</small><strong>Kết nối giáo dục</strong></div>
+          <div class="metric two"><small>Mục tiêu</small><strong>Quản lý tinh gọn</strong></div>
+        </div>
+      </section>
+
+      <section class="principles" id="dinh-huong" aria-labelledby="principles-title">
+        <div class="section-head">
+          <h2 id="principles-title">Một định hướng đơn giản cho giáo dục số.</h2>
+          <p>VietSEM đang được định hình với mong muốn giúp thông tin giáo dục dễ tiếp cận hơn, công việc quản lý rõ ràng hơn và các bên liên quan kết nối thuận tiện hơn.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="card-number">01</span>
+            <h3>Quản lý rõ ràng</h3>
+            <p>Hướng đến việc tổ chức thông tin giáo dục một cách nhất quán và dễ sử dụng.</p>
+          </article>
+          <article class="card">
+            <span class="card-number">02</span>
+            <h3>Kết nối thuận tiện</h3>
+            <p>Tạo nền tảng để nhà trường, giáo viên, phụ huynh và người học phối hợp tốt hơn.</p>
+          </article>
+          <article class="card">
+            <span class="card-number">03</span>
+            <h3>Phát triển từng bước</h3>
+            <p>Bắt đầu từ nhu cầu thực tế và hoàn thiện giải pháp theo từng giai đoạn.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year">2026</span> VietSEM</span>
+      <span>vietsem.com</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
